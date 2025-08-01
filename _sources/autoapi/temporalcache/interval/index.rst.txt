@@ -1,0 +1,34 @@
+temporalcache.interval
+======================
+
+.. py:module:: temporalcache.interval
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   temporalcache.interval.interval
+   temporalcache.interval.minutely
+   temporalcache.interval.hourly
+   temporalcache.interval.daily
+   temporalcache.interval.monthly
+
+
+Module Contents
+---------------
+
+.. py:function:: interval(seconds=0, minutes=0, hours=0, days=0, weeks=0, months=0, years=0, maxsize=128, persistent='', custom=None, **kwargs)
+
+   Expires all entries in the cache every interval
+
+
+.. py:function:: minutely(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: hourly(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: daily(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: monthly(maxsize=128, persistent='', custom=None, **kwargs)
+
