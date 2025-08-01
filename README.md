@@ -7,7 +7,6 @@ Time based function caching
 [![License](https://img.shields.io/github/license/1kbgz/temporal-cache)](https://github.com/1kbgz/temporal-cache)
 [![PyPI](https://img.shields.io/pypi/v/temporal-cache.svg)](https://pypi.python.org/pypi/temporal-cache)
 
-
 ## Install
 
 From **pip**:
@@ -41,7 +40,6 @@ def myfoo():
     ...
 ```
 
-
 ## Expire Cache
 
 The expire cache expires on the time given, in scheduler/cron style.
@@ -54,7 +52,9 @@ def myfoo():
     ...
 ```
 
-
 ## Caveats
 
-Python hashing symantics persist. Dicts will be frozen, lists will be converted to tuples. Users are advised to pre-freeze to avoid issues.
+Python hashing semantics persist. Dicts will be frozen, lists will be converted to tuples. Users are advised to pre-freeze to avoid issues.
+
+> [!NOTE]
+> This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).
