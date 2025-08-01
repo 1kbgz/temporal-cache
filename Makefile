@@ -22,29 +22,17 @@ install:  ## install library
 #########
 .PHONY: lint-py lint-docs fix-py fix-docs lint lints fix format
 
-<<<<<<< before updating
-lint:  ## run python linter with ruff
-	python -m ruff check temporalcache
-	python -m ruff format --check temporalcache
-=======
 lint-py:  ## lint python with ruff
 	python -m ruff check temporal_cache
 	python -m ruff format --check temporal_cache
->>>>>>> after updating
 
 lint-docs:  ## lint docs with mdformat and codespell
 	python -m mdformat --check README.md 
 	python -m codespell_lib README.md 
 
-<<<<<<< before updating
-fix:  ## fix python formatting with ruff
-	python -m ruff check --fix temporalcache
-	python -m ruff format temporalcache
-=======
 fix-py:  ## autoformat python code with ruff
 	python -m ruff check --fix temporal_cache
 	python -m ruff format temporal_cache
->>>>>>> after updating
 
 fix-docs:  ## autoformat docs with mdformat and codespell
 	python -m mdformat README.md 
