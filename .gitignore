@@ -139,10 +139,13 @@ js/dist
 js/lib
 js/node_modules
 js/*.tgz
+temporal_cache/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
+!temporal_cache/extension/temporal_cache.json
+!temporal_cache/extension/install.json
 temporal_cache/nbextension
 temporal_cache/labextension
 
