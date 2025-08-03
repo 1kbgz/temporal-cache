@@ -1,0 +1,117 @@
+temporalcache.utils
+===================
+
+.. py:module:: temporalcache.utils
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   temporalcache.utils.TEMPORAL_CACHE_GLOBAL_DISABLE
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   temporalcache.utils.TCException
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   temporalcache.utils.StorageBase
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   temporalcache.utils.disable
+   temporalcache.utils.enable
+   temporalcache.utils._base
+   temporalcache.utils._secondly
+   temporalcache.utils._minutely
+   temporalcache.utils._hourly
+   temporalcache.utils._daily
+   temporalcache.utils._day_of_week
+   temporalcache.utils._weekly
+   temporalcache.utils._monthly
+   temporalcache.utils.should_expire
+   temporalcache.utils.calc
+
+
+Module Contents
+---------------
+
+.. py:data:: TEMPORAL_CACHE_GLOBAL_DISABLE
+
+.. py:function:: disable()
+
+.. py:function:: enable()
+
+.. py:exception:: TCException
+
+   Bases: :py:obj:`Exception`
+
+
+   Common base class for all non-exit exceptions.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:class:: StorageBase
+
+   .. py:method:: cache_clear()
+      :abstractmethod:
+
+
+
+   .. py:method:: __call__(foo)
+
+      No caching by default
+
+
+
+.. py:function:: _base(last, now, lap, offset, multiple, attr)
+
+   last - last datetime
+   now - current datetime
+   lap - at what point to "roll over"
+   offset - how many seconds between laps
+   attr - what to look at
+   multiple - what to multiply attr by to get seconds
+
+
+.. py:function:: _secondly(last, now, secondly)
+
+.. py:function:: _minutely(last, now, minutely)
+
+.. py:function:: _hourly(last, now, hourly, tz=None)
+
+.. py:function:: _daily(last, now, daily, tz=None)
+
+.. py:function:: _day_of_week(last, now, day_of_week, tz=None)
+
+.. py:function:: _weekly(last, now, weekly, tz=None)
+
+.. py:function:: _monthly(last, now, monthly, tz=None)
+
+.. py:function:: should_expire(last, now, secondly=None, minutely=None, hourly=None, daily=None, day_of_week=None, weekly=None, monthly=None)
+
+   should the cache expire?
+   last - datetime
+   now - datetime
+
+   if yearly:
+       necessary_distance = calc(0, 0, 0, 0, 0, 0, yearly)
+
+
+.. py:function:: calc(seconds=0, minutes=0, hours=0, days=0, weeks=0, months=0, years=0)
+
