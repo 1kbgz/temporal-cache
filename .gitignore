@@ -146,6 +146,7 @@ temporal_cache/extension
 # Jupyter
 .ipynb_checkpoints
 .autoversion
+Untitled*.ipynb
 !temporal_cache/extension/temporal_cache.json
 !temporal_cache/extension/install.json
 temporal_cache/nbextension
