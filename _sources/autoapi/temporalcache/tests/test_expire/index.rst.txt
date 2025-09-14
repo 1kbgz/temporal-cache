@@ -1,0 +1,85 @@
+temporalcache.tests.test_expire
+===============================
+
+.. py:module:: temporalcache.tests.test_expire
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   temporalcache.tests.test_expire.TestExpire
+   temporalcache.tests.test_expire.TestExpireTZ
+
+
+Module Contents
+---------------
+
+.. py:class:: TestExpire
+
+   .. py:method:: setup_method()
+
+
+   .. py:method:: teardown_method()
+
+
+   .. py:method:: test_blank()
+
+
+   .. py:method:: test_mutable()
+
+
+   .. py:method:: test_seconds()
+
+
+   .. py:method:: test_minutes()
+
+
+   .. py:method:: test_minutely()
+
+
+   .. py:method:: test_hourly()
+
+
+   .. py:method:: test_hours()
+
+
+   .. py:method:: test_daily()
+
+
+   .. py:method:: test_days()
+
+
+   .. py:method:: test_checks1()
+
+
+   .. py:method:: test_checks2()
+
+
+   .. py:method:: test_checks3()
+
+
+   .. py:method:: test_checks4()
+
+
+   .. py:method:: test_checks5()
+
+
+   .. py:method:: test_checks6()
+
+
+   .. py:method:: test_checks7()
+
+
+   .. py:method:: test_checks8()
+
+
+   .. py:method:: test_checks9()
+
+
+.. py:class:: TestExpireTZ
+
+   .. py:method:: test_tzexpire()
+
+
