@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-rs>=0.1.4"]
 build-backend="hatchling.build"
 
 [project]
@@ -14,6 +14,7 @@ keywords = []
 
 classifiers = [
     "Development Status :: 3 - Alpha",
+    "Programming Language :: Rust",
     "Programming Language :: Python",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
@@ -37,7 +38,9 @@ develop = [
     "build",
     "bump-my-version",
     "check-manifest",
+    "cibuildwheel",
     "codespell>=2.4,<2.5",
+    "hatch-rs",
     "hatchling",
     "mdformat>=0.7.22,<0.8",
     "mdformat-tables>=1",
@@ -45,7 +48,6 @@ develop = [
     "pytest-cov",
     "ruff",
     "twine",
-    "uv",
     "wheel",
 ]
 
@@ -71,12 +73,50 @@ filename = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
+[[tool.bumpversion.files]]
+filename = "Cargo.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "rust/Cargo.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
 [tool.check-manifest]
 ignore = [
     ".copier-answers.yaml",
+    "Cargo.toml",
+    "Cargo.lock",
     "Makefile",
     "docs/**/*",
+    "rust/.config/*",
+    "rust/Cargo.lock",
+    "rust/README.md",
 ]
+
+[tool.cibuildwheel]
+build = "cp39-*"
+test-command = "pytest -vvv {project}/temporalcache/tests"
+test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
+
+[tool.cibuildwheel.linux]
+before-all = """
+curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable --profile=minimal -y
+rustup target add aarch64-unknown-linux-gnu
+rustup target add x86_64-unknown-linux-gnu
+rustup show
+"""
+environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always"}
+skip = "*i686* *musllinux*"
+
+[tool.cibuildwheel.macos]
+environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always", MACOS_DEPLOYMENT_TARGET=11.0}
+archs = "arm64"
+
+[tool.cibuildwheel.windows]
+environment = {PATH="$UserProfile\\.cargo\bin;$PATH", CARGO_TERM_COLOR="always"}
+skip = "*win32 *arm_64"
 
 [tool.coverage.run]
 branch = true
@@ -93,18 +133,26 @@ ignore_errors = true
 fail_under = 50
 
 [tool.hatch.build]
-artifacts = []
+artifacts = [
+    "project/*.dll",
+    "project/*.dylib",
+    "project/*.so",
+]
 
 [tool.hatch.build.sources]
 src = "/"
 
+[tool.hatch.build.hooks.hatch-rs]
+verbose = true
+module = "temporalcache"
+path = "."
+
 [tool.hatch.build.targets.sdist]
-packages = ["temporalcache"]
+packages = ["temporalcache", "/rust", "/src"]
+sources = ["."]
 
 [tool.hatch.build.targets.wheel]
 packages = ["temporalcache"]
-
-[tool.hatch.build.targets.wheel.shared-data]
 
 [tool.pytest.ini_options]
 addopts = ["-vvv", "--junitxml=junit.xml"]
@@ -124,9 +172,3 @@ section-order = ["future", "standard-library", "third-party", "first-party", "lo
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401", "F403"]
-
-[tool.yardang]
-module = "temporalcache"
-pages = [
-    "docs/src/api.md",
-]

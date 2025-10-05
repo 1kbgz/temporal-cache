@@ -141,16 +141,16 @@ js/node_modules
 js/test-results
 js/playwright-report
 js/*.tgz
-temporal_cache/extension
+temporalcache/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
 Untitled*.ipynb
-!temporal_cache/extension/temporal_cache.json
-!temporal_cache/extension/install.json
-temporal_cache/nbextension
-temporal_cache/labextension
+!temporalcache/extension/temporalcache.json
+!temporalcache/extension/install.json
+temporalcache/nbextension
+temporalcache/labextension
 
 # Mac
 .DS_Store

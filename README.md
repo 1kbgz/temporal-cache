@@ -1,4 +1,4 @@
-# temporal-cache
+# temporal cache
 
 Time based function caching
 
@@ -7,17 +7,7 @@ Time based function caching
 [![License](https://img.shields.io/github/license/1kbgz/temporal-cache)](https://github.com/1kbgz/temporal-cache)
 [![PyPI](https://img.shields.io/pypi/v/temporal-cache.svg)](https://pypi.python.org/pypi/temporal-cache)
 
-## Install
-
-From **pip**:
-
-`pip install temporal-cache`
-
-From **conda**:
-
-`conda install temporal-cache -c conda-forge`
-
-## Why?
+## Overview
 
 I needed something that would automagically refresh at 4:00pm when markets close.
 
