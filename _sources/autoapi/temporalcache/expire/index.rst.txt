@@ -1,0 +1,36 @@
+temporalcache.expire
+====================
+
+.. py:module:: temporalcache.expire
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   temporalcache.expire.expire
+   temporalcache.expire.minutely
+   temporalcache.expire.hourly
+   temporalcache.expire.daily
+   temporalcache.expire.monthly
+
+
+Module Contents
+---------------
+
+.. py:function:: expire(second=None, minute=None, hour=None, day=None, day_of_week=None, week=None, month=None, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+   Expires all entries in the cache @ whole number time
+
+   for example, @expire(0, 30, 16) will expire the cache at 4:30pm every day
+
+
+.. py:function:: minutely(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: hourly(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: daily(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: monthly(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+

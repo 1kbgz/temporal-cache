@@ -1,0 +1,28 @@
+temporalcache.tests.test_persistent
+===================================
+
+.. py:module:: temporalcache.tests.test_persistent
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   temporalcache.tests.test_persistent.TestExpire
+
+
+Module Contents
+---------------
+
+.. py:class:: TestExpire
+
+   .. py:method:: setup_method()
+
+
+   .. py:method:: teardown_method()
+
+
+   .. py:method:: test_blank()
+
+

@@ -1,0 +1,69 @@
+temporalcache.persistent_lru_cache
+==================================
+
+.. py:module:: temporalcache.persistent_lru_cache
+
+.. autoapi-nested-parse::
+
+   The MIT License (MIT)
+
+   Copyright (c) 2013 abarnert
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy of
+   this software and associated documentation files (the "Software"), to deal in
+   the Software without restriction, including without limitation the rights to
+   use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+   the Software, and to permit persons to whom the Software is furnished to do so,
+   subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+   FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+   COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+   IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   temporalcache.persistent_lru_cache.persistent_lru_cache
+
+
+Module Contents
+---------------
+
+.. py:function:: persistent_lru_cache(filename, save_every=1, maxsize=128, typed=False)
+
+   Least-recently-used cache decorator.
+
+   *filename* is a path to a pickle file that will store the cache
+   between runs.
+
+   If *save_every* is set to None, the cache will only be saved at exit
+   (or when wrapper.cache_save is explicitly callde). If it's a number N,
+   the cache will be saved every N cache misses.
+
+   If *maxsize* is set to None, the LRU features are disabled and the cache
+   can grow without bound.
+
+   If *typed* is True, arguments of different types will be cached separately.
+   For example, f(3.0) and f(3) will be treated as distinct calls with
+   distinct results.
+
+   Arguments to the cached function must be hashable.
+
+   View the cache statistics named tuple (hits, misses, maxsize, currsize)
+   with f.cache_info().  Clear the cache and statistics with f.cache_clear().
+   Access the underlying function with f.__wrapped__.
+
+   See:  http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used
+
+
+

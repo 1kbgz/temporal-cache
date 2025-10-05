@@ -1,0 +1,127 @@
+temporalcache
+=============
+
+.. py:module:: temporalcache
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/temporalcache/expire/index
+   /autoapi/temporalcache/interval/index
+   /autoapi/temporalcache/persistent_lru_cache/index
+   /autoapi/temporalcache/tests/index
+   /autoapi/temporalcache/utils/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   temporalcache.TEMPORAL_CACHE_GLOBAL_DISABLE
+   temporalcache.__version__
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   temporalcache.TCException
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   temporalcache.StorageBase
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   temporalcache.expire_daily
+   temporalcache.expire
+   temporalcache.expire_hourly
+   temporalcache.expire_minutely
+   temporalcache.expire_monthly
+   temporalcache.daily
+   temporalcache.hourly
+   temporalcache.interval
+   temporalcache.minutely
+   temporalcache.monthly
+   temporalcache.disable
+   temporalcache.enable
+
+
+Package Contents
+----------------
+
+.. py:function:: expire_daily(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: expire(second=None, minute=None, hour=None, day=None, day_of_week=None, week=None, month=None, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+   Expires all entries in the cache @ whole number time
+
+   for example, @expire(0, 30, 16) will expire the cache at 4:30pm every day
+
+
+.. py:function:: expire_hourly(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: expire_minutely(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: expire_monthly(on=0, tz=None, maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: daily(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: hourly(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: interval(seconds=0, minutes=0, hours=0, days=0, weeks=0, months=0, years=0, maxsize=128, persistent='', custom=None, **kwargs)
+
+   Expires all entries in the cache every interval
+
+
+.. py:function:: minutely(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:function:: monthly(maxsize=128, persistent='', custom=None, **kwargs)
+
+.. py:data:: TEMPORAL_CACHE_GLOBAL_DISABLE
+
+.. py:class:: StorageBase
+
+   .. py:method:: cache_clear()
+      :abstractmethod:
+
+
+
+   .. py:method:: __call__(foo)
+
+      No caching by default
+
+
+
+.. py:exception:: TCException
+
+   Bases: :py:obj:`Exception`
+
+
+   Common base class for all non-exit exceptions.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:function:: disable()
+
+.. py:function:: enable()
+
+.. py:data:: __version__
+   :value: '0.1.6'
+
+
