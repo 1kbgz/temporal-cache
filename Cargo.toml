@@ -10,11 +10,7 @@ path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-<<<<<<< before updating
 temporalcache = { path = "./rust", version = "*" }
-=======
-temporal_cache = { path = "./rust", version = "*" }
->>>>>>> after updating
 pyo3 = { version = "0.26", features = ["abi3-py39", "extension-module", "multiple-pymethods"] }
 
 [profile.release]
