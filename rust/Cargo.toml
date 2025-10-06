@@ -14,7 +14,10 @@ path = "src/lib.rs"
 crate-type = ["rlib"]
 
 [dependencies]
-foyer = "0.20.0"
+foyer = { version = "0.20.0", features = ["serde"] }
+libc = "0.2.176"
+tempfile = "3.23.0"
+tokio = "1.47.1"
 
 [profile.test.junit]
 path = "junit.xml"

@@ -1,13 +1,13 @@
 use pyo3::prelude::*;
 
-mod example;
+mod cache;
 
-pub use example::Example;
+pub use cache::MemoryCacheOptions;
 
 
 #[pymodule]
 fn temporalcache(_py: Python, m: &Bound<PyModule>) -> PyResult<()> {
     // Example
-    m.add_class::<Example>().unwrap();
+    m.add_class::<MemoryCacheOptions>().unwrap();
     Ok(())
 }
