@@ -14,7 +14,10 @@ path = "src/lib.rs"
 crate-type = ["rlib"]
 
 [dependencies]
+<<<<<<< before updating
 foyer = "0.20.0"
+=======
+>>>>>>> after updating
 
 [profile.test.junit]
 path = "junit.xml"
