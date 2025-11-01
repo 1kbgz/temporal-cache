@@ -10,8 +10,13 @@ path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
+<<<<<<< before updating
 temporalcache = { path = "./rust", version = "*" }
 pyo3 = { version = "0.26", features = ["abi3-py39", "extension-module", "multiple-pymethods"] }
+=======
+temporal_cache = { path = "./rust", version = "*" }
+pyo3 = { version = "0.27.1", features = ["abi3-py39", "extension-module", "multiple-pymethods"] }
+>>>>>>> after updating
 
 [profile.release]
 panic = 'abort'
