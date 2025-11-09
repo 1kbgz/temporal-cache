@@ -95,13 +95,8 @@ ignore = [
 ]
 
 [tool.cibuildwheel]
-<<<<<<< before updating
-build = "cp39-*"
-test-command = "pytest -vvv {project}/temporalcache/tests"
-=======
 build = "cp310-*"
-test-command = "pytest -vvv {project}/temporal_cache/tests"
->>>>>>> after updating
+test-command = "pytest -vvv {project}/temporalcache/tests"
 test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
 
 [tool.cibuildwheel.linux]
