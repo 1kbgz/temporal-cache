@@ -15,4 +15,10 @@ from .utils import (
     enable,
 )
 
+try:
+    from .fsspec import CachedFileSystem
+except ImportError:
+    # fsspec is optional
+    pass
+
 __version__ = "0.1.6"

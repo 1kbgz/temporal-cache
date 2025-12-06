@@ -49,6 +49,7 @@ develop = [
     "twine",
     "wheel",
 ]
+fsspec = ["fsspec>=2023.1.0"]
 
 [project.scripts]
 
