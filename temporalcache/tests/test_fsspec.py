@@ -300,13 +300,8 @@ class TestFsspecCaching:
         """
         from temporalcache.fsspec import CachedFileSystem
 
-        fs = CachedFileSystem(
-            "memory", cache_config={"paths": {"/file1.txt": {"seconds": 10}}, "paths2": {"/file2.txt": {"seconds": 5}}, "default": {"seconds": 3}}
-        )
-
         # Use different cache configs for different files
-        # file1 uses "paths" config, file2 uses default
-        # Actually, let's use a config where files have different cache params
+        # file1 uses "paths" config, file2 uses globs config
         fs = CachedFileSystem("memory", cache_config={"paths": {"/file1.txt": {"seconds": 10}}, "globs": {"*.csv": {"seconds": 5}}})
 
         # Cache some data
