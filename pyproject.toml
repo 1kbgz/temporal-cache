@@ -1,10 +1,15 @@
 [build-system]
-requires = ["hatchling", "hatch-rs>=0.1.4"]
+requires = [
+    "hatchling",
+    "hatch-rs>=0.1.4",
+]
 build-backend="hatchling.build"
 
 [project]
 name = "temporal-cache"
-authors = [{name = "the temporal-cache authors", email = "dev@1kbgz.com"}]
+authors = [
+    {name = "the temporal-cache authors", email = "dev@1kbgz.com"},
+]
 description = "Time based function caching"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -47,6 +52,8 @@ develop = [
     "pytest-cov",
     "ruff>=0.9,<0.15",
     "twine",
+    "ty",
+    "uv",
     "wheel",
 ]
 
@@ -96,8 +103,13 @@ ignore = [
 
 [tool.cibuildwheel]
 build = "cp310-*"
+<<<<<<< before updating
 test-command = "pytest -vvv {project}/temporalcache/tests"
 test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
+=======
+test-command = "pytest -vvv {project}/temporal_cache/tests"
+test-extras = "develop"
+>>>>>>> after updating
 
 [tool.cibuildwheel.linux]
 before-all = """
@@ -147,6 +159,7 @@ module = "temporalcache"
 path = "."
 
 [tool.hatch.build.targets.sdist]
+<<<<<<< before updating
 packages = ["temporalcache", "/rust", "/src"]
 sources = ["."]
 
@@ -156,18 +169,58 @@ packages = ["temporalcache"]
 [tool.pytest.ini_options]
 addopts = ["-vvv", "--junitxml=junit.xml"]
 testpaths = "temporalcache/tests"
+=======
+packages = [
+    "temporal_cache",
+    "/rust",
+    "/src",
+]
+sources = [
+    ".",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "temporal_cache",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "-vvv",
+    "--junitxml=junit.xml",
+]
+testpaths = "temporal_cache/tests"
+>>>>>>> after updating
 
 [tool.ruff]
 line-length = 150
 
 [tool.ruff.lint]
-extend-select = ["I"]
+extend-select = [
+    "I",
+]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
 default-section = "third-party"
+<<<<<<< before updating
 known-first-party = ["temporalcache"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+=======
+known-first-party = [
+    "temporal_cache",
+]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+>>>>>>> after updating
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401", "F403"]
+"__init__.py" = [
+    "F401",
+    "F403",
+]
