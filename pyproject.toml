@@ -103,13 +103,8 @@ ignore = [
 
 [tool.cibuildwheel]
 build = "cp310-*"
-<<<<<<< before updating
 test-command = "pytest -vvv {project}/temporalcache/tests"
-test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
-=======
-test-command = "pytest -vvv {project}/temporal_cache/tests"
 test-extras = "develop"
->>>>>>> after updating
 
 [tool.cibuildwheel.linux]
 before-all = """
@@ -159,19 +154,8 @@ module = "temporalcache"
 path = "."
 
 [tool.hatch.build.targets.sdist]
-<<<<<<< before updating
-packages = ["temporalcache", "/rust", "/src"]
-sources = ["."]
-
-[tool.hatch.build.targets.wheel]
-packages = ["temporalcache"]
-
-[tool.pytest.ini_options]
-addopts = ["-vvv", "--junitxml=junit.xml"]
-testpaths = "temporalcache/tests"
-=======
 packages = [
-    "temporal_cache",
+    "temporalcache",
     "/rust",
     "/src",
 ]
@@ -181,7 +165,7 @@ sources = [
 
 [tool.hatch.build.targets.wheel]
 packages = [
-    "temporal_cache",
+    "temporalcache",
 ]
 
 [tool.pytest.ini_options]
@@ -189,8 +173,7 @@ addopts = [
     "-vvv",
     "--junitxml=junit.xml",
 ]
-testpaths = "temporal_cache/tests"
->>>>>>> after updating
+testpaths = "temporalcache/tests"
 
 [tool.ruff]
 line-length = 150
@@ -203,12 +186,8 @@ extend-select = [
 [tool.ruff.lint.isort]
 combine-as-imports = true
 default-section = "third-party"
-<<<<<<< before updating
-known-first-party = ["temporalcache"]
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
-=======
 known-first-party = [
-    "temporal_cache",
+    "temporalcache",
 ]
 section-order = [
     "future",
@@ -217,7 +196,6 @@ section-order = [
     "first-party",
     "local-folder",
 ]
->>>>>>> after updating
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = [
