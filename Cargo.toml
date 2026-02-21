@@ -5,6 +5,7 @@ edition = "2021"
 publish = false
 
 [lib]
+<<<<<<< before updating
 name = "temporalcache"
 path = "src/lib.rs"
 crate-type = ["cdylib"]
@@ -12,6 +13,15 @@ crate-type = ["cdylib"]
 [dependencies]
 temporalcache = { path = "./rust", version = "*" }
 pyo3 = { version = "0.27.1", features = ["abi3-py39", "extension-module", "multiple-pymethods"] }
+=======
+name = "temporal_cache"
+path = "rust/python/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+temporal_cache = { path = "./rust", version = "*" }
+pyo3 = { version = "0.28.2", features = ["abi3", "extension-module", "multiple-pymethods"] }
+>>>>>>> after updating
 
 [profile.release]
 panic = 'abort'

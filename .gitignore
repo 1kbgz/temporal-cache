@@ -141,19 +141,32 @@ js/node_modules
 js/test-results
 js/playwright-report
 js/*.tgz
+<<<<<<< before updating
 temporalcache/extension
+=======
+>>>>>>> after updating
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
 Untitled*.ipynb
+<<<<<<< before updating
 !temporalcache/extension/temporalcache.json
 !temporalcache/extension/install.json
 temporalcache/nbextension
 temporalcache/labextension
+=======
+temporal_cache/extension
+temporal_cache/nbextension
+temporal_cache/labextension
+>>>>>>> after updating
 
 # Mac
 .DS_Store
 
 # Rust
 target
+
+# Hydra
+outputs/
+multirun/
