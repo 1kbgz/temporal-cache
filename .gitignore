@@ -141,14 +141,12 @@ js/node_modules
 js/test-results
 js/playwright-report
 js/*.tgz
-temporalcache/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
 Untitled*.ipynb
-!temporalcache/extension/temporalcache.json
-!temporalcache/extension/install.json
+temporalcache/extension
 temporalcache/nbextension
 temporalcache/labextension
 
@@ -157,3 +155,7 @@ temporalcache/labextension
 
 # Rust
 target
+
+# Hydra
+outputs/
+multirun/

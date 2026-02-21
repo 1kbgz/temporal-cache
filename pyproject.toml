@@ -3,7 +3,7 @@ requires = [
     "hatchling",
     "hatch-rs>=0.1.4",
 ]
-build-backend="hatchling.build"
+build-backend = "hatchling.build"
 
 [project]
 name = "temporal-cache"
@@ -41,16 +41,16 @@ dependencies = [
 develop = [
     "build",
     "bump-my-version",
-    "check-manifest",
+    "check-dist",
     "cibuildwheel",
-    "codespell>=2.4,<2.5",
+    "codespell",
     "hatch-rs",
     "hatchling",
-    "mdformat>=0.7.22,<1.1",
+    "mdformat",
     "mdformat-tables>=1",
     "pytest",
     "pytest-cov",
-    "ruff>=0.9,<0.15",
+    "ruff",
     "twine",
     "ty",
     "uv",
@@ -89,16 +89,17 @@ filename = "rust/Cargo.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
-[tool.check-manifest]
-ignore = [
-    ".copier-answers.yaml",
+[tool.check-dist.sdist]
+include = [
+    "temporalcache",
+    "rust",
     "Cargo.toml",
     "Cargo.lock",
-    "Makefile",
-    "docs/**/*",
-    "rust/.config/*",
-    "rust/Cargo.lock",
-    "rust/README.md",
+]
+
+[tool.check-dist.wheel]
+include = [
+    "temporalcache",
 ]
 
 [tool.cibuildwheel]
@@ -114,6 +115,7 @@ rustup target add x86_64-unknown-linux-gnu
 rustup show
 """
 environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always"}
+manylinux-x86_64-image = "manylinux_2_28"
 skip = "*i686* *musllinux*"
 
 [tool.cibuildwheel.macos]
@@ -156,16 +158,21 @@ path = "."
 [tool.hatch.build.targets.sdist]
 packages = [
     "temporalcache",
-    "/rust",
-    "/src",
+    "rust",
+    "Cargo.toml",
+    "Cargo.lock",
 ]
-sources = [
-    ".",
+exclude = [
+    "rust/Makefile",
+    "target",
 ]
 
 [tool.hatch.build.targets.wheel]
 packages = [
     "temporalcache",
+]
+exclude = [
+    "rust",
 ]
 
 [tool.pytest.ini_options]
