@@ -143,16 +143,10 @@ path = "."
 
 [tool.hatch.build.targets.sdist]
 packages = [
-<<<<<<< before updating
     "temporalcache",
-    "/rust",
-    "/src",
-=======
-    "temporal_cache",
     "rust",
     "Cargo.toml",
     "Cargo.lock",
->>>>>>> after updating
 ]
 exclude = [
     "rust/Makefile",
