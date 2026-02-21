@@ -89,6 +89,19 @@ filename = "rust/Cargo.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
+[tool.check-dist.sdist]
+include = [
+    "temporalcache",
+    "rust",
+    "Cargo.toml",
+    "Cargo.lock",
+]
+
+[tool.check-dist.wheel]
+include = [
+    "temporalcache",
+]
+
 [tool.cibuildwheel]
 build = "cp310-*"
 test-command = "pytest -vvv {project}/temporalcache/tests"
