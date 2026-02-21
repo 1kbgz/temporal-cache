@@ -115,6 +115,7 @@ rustup target add x86_64-unknown-linux-gnu
 rustup show
 """
 environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always"}
+manylinux-x86_64-image = "manylinux_2_28"
 skip = "*i686* *musllinux*"
 
 [tool.cibuildwheel.macos]

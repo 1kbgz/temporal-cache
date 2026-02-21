@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 
-use temporal_cache::Example as BaseExample;
+use temporalcache::Example as BaseExample;
 
 #[pyclass]
 pub struct Example {
