@@ -5,8 +5,8 @@ authors = ["the temporal-cache authors <dev@1kbgz.com>"]
 edition = "2021"
 license = "Apache-2.0"
 readme = "../README.md"
-repository = "https://github.com/1kbgz/temporal-cache"
-description = ""
+repository = "https://github.com/1kbgz/temporal cache"
+description = "Time based function caching"
 
 [lib]
 name = "temporalcache"
