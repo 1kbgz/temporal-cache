@@ -58,7 +58,7 @@ jobs:
       run: make coverage
 
     - name: Upload test results (Python)
-      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: test-results-${{ matrix.os }}-${{ matrix.python-version }}
         path: '**/junit.xml'
@@ -76,7 +76,7 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v4
+      uses: docker/setup-qemu-action@06116385d9baf250c9f4dcb4858b16962ea869c3 # v4.1.0
       with:
         platforms: all
       if: runner.os == 'Linux' && runner.arch == 'X64'
@@ -111,7 +111,7 @@ jobs:
         module: temporalcache
       if: matrix.os == 'ubuntu-latest'
 
-    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: dist-${{matrix.os}}
         path: dist
