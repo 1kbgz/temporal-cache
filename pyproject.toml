@@ -143,9 +143,9 @@ fail_under = 50
 
 [tool.hatch.build]
 artifacts = [
-    "temporal_cache/*.dll",
-    "temporal_cache/*.dylib",
-    "temporal_cache/*.so",
+    "temporalcache/*.dll",
+    "temporalcache/*.dylib",
+    "temporalcache/*.so",
 ]
 
 [tool.hatch.build.sources]
