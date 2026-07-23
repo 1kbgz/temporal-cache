@@ -9,7 +9,7 @@ import os
 from abc import ABCMeta, abstractmethod
 from functools import lru_cache, wraps
 
-TEMPORAL_CACHE_GLOBAL_DISABLE = os.environ.get("TEMPORAL_CACHE_DISABLE", "false")
+TEMPORAL_CACHE_GLOBAL_DISABLE = bool(os.environ.get("TEMPORAL_CACHE_DISABLE"))
 
 
 def disable():
