@@ -274,7 +274,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -289,7 +289,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -304,7 +304,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -319,7 +319,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -334,7 +334,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -349,7 +349,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -364,7 +364,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -379,7 +379,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -394,7 +394,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")  # noqa: TRY002
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 

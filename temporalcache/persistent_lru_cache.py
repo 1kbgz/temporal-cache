@@ -35,7 +35,7 @@ try:
     from _thread import RLock
     from collections import namedtuple
     from functools import update_wrapper
-except ImportError:
+except ImportError:  # pragma: no cover
 
     class RLock:
         "Dummy reentrant lock for builds without threads"
@@ -53,6 +53,7 @@ except ImportError:
 
 _CacheInfo = namedtuple("CacheInfo", ["hits", "misses", "maxsize", "currsize"])
 _KWD_MARK = (object(),)
+_FAST_TYPES = frozenset({int, str, frozenset, type(None)})
 
 
 class _HashedSeq(list):
@@ -77,7 +78,7 @@ def _make_key(
     kwds,
     typed,
     kwd_mark=_KWD_MARK,
-    fasttypes=None,
+    fasttypes=_FAST_TYPES,
     sorted=sorted,
     tuple=tuple,
     type=type,
@@ -93,8 +94,6 @@ def _make_key(
     saves space and improves lookup speed.
 
     """
-    if fasttypes is None:
-        fasttypes = {int, str, frozenset, type(None)}
     key = args
     if kwds:
         sorted_items = sorted(kwds.items())
