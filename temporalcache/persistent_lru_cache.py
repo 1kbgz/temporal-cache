@@ -35,7 +35,7 @@ try:
     from _thread import RLock
     from collections import namedtuple
     from functools import update_wrapper
-except BaseException:
+except ImportError:
 
     class RLock:
         "Dummy reentrant lock for builds without threads"
@@ -52,6 +52,7 @@ except BaseException:
 ################################################################################
 
 _CacheInfo = namedtuple("CacheInfo", ["hits", "misses", "maxsize", "currsize"])
+_KWD_MARK = (object(),)
 
 
 class _HashedSeq(list):
@@ -61,7 +62,7 @@ class _HashedSeq(list):
 
     """
 
-    __slots__ = "hashvalue"
+    __slots__ = ("hashvalue",)
 
     def __init__(self, tup, hash=hash):
         self[:] = tup
@@ -75,8 +76,8 @@ def _make_key(
     args,
     kwds,
     typed,
-    kwd_mark=(object(),),
-    fasttypes={int, str, frozenset, type(None)},
+    kwd_mark=_KWD_MARK,
+    fasttypes=None,
     sorted=sorted,
     tuple=tuple,
     type=type,
@@ -92,6 +93,8 @@ def _make_key(
     saves space and improves lookup speed.
 
     """
+    if fasttypes is None:
+        fasttypes = {int, str, frozenset, type(None)}
     key = args
     if kwds:
         sorted_items = sorted(kwds.items())
@@ -152,13 +155,12 @@ def persistent_lru_cache(filename, save_every=1, maxsize=128, typed=False):
         try:
             with open(filename, "rb") as f:
                 cache = pickle.load(f)
-        except BaseException:
+        except (EOFError, OSError, pickle.PickleError):
             cache = {}
 
         def cache_save():
-            with lock:
-                with open(filename, "wb") as f:
-                    pickle.dump(cache, f)
+            with lock, open(filename, "wb") as f:
+                pickle.dump(cache, f)
 
         atexit.register(cache_save)
 
@@ -234,7 +236,7 @@ def persistent_lru_cache(filename, save_every=1, maxsize=128, typed=False):
                         # still adjusting the links.
                         root = oldroot[NEXT]
                         oldkey = root[KEY]
-                        _ = root[RESULT]  # noqa: F841
+                        _ = root[RESULT]
                         root[KEY] = root[RESULT] = None
                         # Now update the cache dictionary.
                         del cache[oldkey]

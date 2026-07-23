@@ -26,7 +26,7 @@ class TestUtils:
 
         from temporalcache import disable, enable, expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)  # noqa: DTZ001
         self._delay = datetime.timedelta(seconds=0)
 
         @expire(1)
@@ -62,7 +62,7 @@ class TestUtils:
     def test_should_expire_seconds(self):
         from temporalcache.utils import should_expire
 
-        now = datetime.datetime(2018, 1, 1, 1, 1, 0)
+        now = datetime.datetime(2018, 1, 1, 1, 1, 0)  # noqa: DTZ001
         next_second = now + datetime.timedelta(seconds=1)
         next_secondp = now + datetime.timedelta(seconds=2)
         assert should_expire(now, now, 2) is False
@@ -72,7 +72,7 @@ class TestUtils:
     def test_should_expire_seconds2(self):
         from temporalcache.utils import should_expire
 
-        now = datetime.datetime(2018, 1, 1, 1, 1, 2)
+        now = datetime.datetime(2018, 1, 1, 1, 1, 2)  # noqa: DTZ001
         next_second = now + datetime.timedelta(seconds=7)
         next_second2 = now + datetime.timedelta(seconds=58)
         next_secondp = now + datetime.timedelta(seconds=59)
@@ -84,7 +84,7 @@ class TestUtils:
     def test_should_expire_minutes(self):
         from temporalcache.utils import should_expire
 
-        now = datetime.datetime(2018, 1, 1, 1, 0, 1)
+        now = datetime.datetime(2018, 1, 1, 1, 0, 1)  # noqa: DTZ001
         next_min = now + datetime.timedelta(minutes=1)
         next_minp = now + datetime.timedelta(minutes=2)
         assert should_expire(now, now, 0, 1) is False
@@ -94,7 +94,7 @@ class TestUtils:
     def test_should_expire_minutes2(self):
         from temporalcache.utils import should_expire
 
-        now = datetime.datetime(2018, 1, 1, 1, 2, 1)
+        now = datetime.datetime(2018, 1, 1, 1, 2, 1)  # noqa: DTZ001
         next_min = now + datetime.timedelta(minutes=5)
         next_min2 = now + datetime.timedelta(minutes=58)
         next_minp = now + datetime.timedelta(minutes=59)
@@ -106,7 +106,7 @@ class TestUtils:
     def test_should_expire_seconds_and_minutes(self):
         from temporalcache.utils import should_expire
 
-        now = datetime.datetime(2018, 1, 1, 1, 0, 0)
+        now = datetime.datetime(2018, 1, 1, 1, 0, 0)  # noqa: DTZ001
         next_second = now + datetime.timedelta(seconds=1)
         next_min = now + datetime.timedelta(minutes=1)
         next_minp = now + datetime.timedelta(minutes=1, seconds=1)
@@ -115,7 +115,7 @@ class TestUtils:
         assert should_expire(now, next_min, 1, 1) is False
         assert should_expire(now, next_minp, 1, 1)
 
-        now = datetime.datetime(2018, 1, 1, 1, 2, 0)
+        now = datetime.datetime(2018, 1, 1, 1, 2, 0)  # noqa: DTZ001
         next_min = now + datetime.timedelta(minutes=5)
         next_min2 = now + datetime.timedelta(minutes=58)
         next_minp = now + datetime.timedelta(minutes=59)
@@ -129,7 +129,7 @@ class TestUtils:
     def test_should_expire_boundary(self):
         from temporalcache.utils import should_expire
 
-        now = datetime.datetime(1999, 12, 31, 23, 59, 58)
+        now = datetime.datetime(1999, 12, 31, 23, 59, 58)  # noqa: DTZ001
         next_second = now + datetime.timedelta(seconds=1)
         next_secondp = now + datetime.timedelta(seconds=2)
         assert should_expire(now, now, 0) is False

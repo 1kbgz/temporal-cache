@@ -9,7 +9,7 @@ import os
 from abc import ABCMeta, abstractmethod
 from functools import lru_cache, wraps
 
-TEMPORAL_CACHE_GLOBAL_DISABLE = os.environ.get("TEMPORAL_CACHE_DISABLE", False)
+TEMPORAL_CACHE_GLOBAL_DISABLE = os.environ.get("TEMPORAL_CACHE_DISABLE", "false")
 
 
 def disable():
@@ -67,9 +67,7 @@ def _base(last, now, lap, offset, multiple, attr):
     if diff > offset:
         return True
     if getattr(last, attr) < lap:
-        if getattr(now, attr) >= lap:
-            return True
-        return False
+        return getattr(now, attr) >= lap
     # last started after :X, so if now > last + interval, or if now > :X
     elif getattr(now, attr) >= lap and diff >= min_gap:
         return True

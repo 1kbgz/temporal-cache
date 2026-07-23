@@ -21,7 +21,7 @@ def interval(seconds=0, minutes=0, hours=0, days=0, weeks=0, months=0, years=0, 
         seconds = 1
 
     def _wrapper(foo):
-        last = datetime.datetime.now()
+        last = datetime.datetime.now()  # noqa: DTZ005
 
         if custom:
             foo = custom(**kwargs)(foo)
@@ -34,7 +34,7 @@ def interval(seconds=0, minutes=0, hours=0, days=0, weeks=0, months=0, years=0, 
         def _wrapped_foo(*args, **kwargs):
             nonlocal last
 
-            now = datetime.datetime.now()
+            now = datetime.datetime.now()  # noqa: DTZ005
             if (now - last).total_seconds() > calc(seconds, minutes, hours, days, weeks, months, years) or utils.TEMPORAL_CACHE_GLOBAL_DISABLE:
                 foo.cache_clear()
             last = now

@@ -11,7 +11,7 @@ import datetime
 class TestInterval:
     def setup_method(self):
         self._olddatetime = datetime.datetime
-        _now = datetime.datetime.now()
+        _now = datetime.datetime.now()  # noqa: DTZ005
 
         class NewDateTime(datetime.datetime):
             @classmethod
