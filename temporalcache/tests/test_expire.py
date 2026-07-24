@@ -33,7 +33,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)  # noqa: DTZ001
         self._delay = datetime.timedelta(seconds=0)
 
         @expire(1)
@@ -56,7 +56,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(seconds=0)
 
         @expire()
@@ -79,7 +79,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(seconds=0)
 
         @expire(second=0)
@@ -106,7 +106,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(minutes=0)
 
         @expire(minute=5)
@@ -133,7 +133,7 @@ class TestExpire:
 
         from temporalcache import expire_minutely
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(seconds=0)
 
         @expire_minutely(on=5)
@@ -160,7 +160,7 @@ class TestExpire:
 
         from temporalcache import expire_hourly
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(minutes=0)
 
         @expire_hourly(on=5)
@@ -187,7 +187,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(hours=0)
 
         @expire(hour=5)
@@ -214,7 +214,7 @@ class TestExpire:
 
         from temporalcache import expire_daily
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(hours=0)
 
         @expire_daily(on=5)
@@ -241,7 +241,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
         self._delay = datetime.timedelta(days=0)
 
         @expire(day=5)
@@ -274,7 +274,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -289,7 +289,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -304,7 +304,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -319,7 +319,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -334,7 +334,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -349,7 +349,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -364,7 +364,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -379,7 +379,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 
@@ -394,7 +394,7 @@ class TestExpire:
             def foo():
                 return random()
 
-            raise Exception("")
+            raise AssertionError  # pragma: no cover
         except TCException:
             pass
 

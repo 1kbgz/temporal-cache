@@ -33,7 +33,7 @@ if os.name != "nt":
 
             from temporalcache import expire
 
-            self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)
+            self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)  # noqa: DTZ001
             self._delay = datetime.timedelta(seconds=0)
 
             with NamedTemporaryFile() as f:
