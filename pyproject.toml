@@ -67,6 +67,10 @@ current_version = "0.1.6"
 commit = true
 tag = true
 commit_args = "-s"
+pre_commit_hooks = [
+    "cargo update --workspace",
+    "git add Cargo.lock",
+]
 
 [[tool.bumpversion.files]]
 filename = "temporalcache/__init__.py"
