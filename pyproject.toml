@@ -46,6 +46,7 @@ develop = [
     "hatch-rs",
     "hatchling",
     "mdformat",
+    "mdformat-frontmatter",
     "mdformat-tables>=1",
     "pytest",
     "pytest-cov",
@@ -69,7 +70,8 @@ tag = true
 commit_args = "-s"
 pre_commit_hooks = [
     "cargo update --workspace",
-    "git add Cargo.lock",
+    "cargo update --manifest-path rust/Cargo.toml --workspace",
+    "git add Cargo.lock rust/Cargo.lock",
 ]
 
 [[tool.bumpversion.files]]
@@ -134,7 +136,11 @@ skip = "*win32 *arm64"
 [tool.coverage.run]
 branch = true
 omit = [
+<<<<<<< before updating
     "temporalcache/tests/integration/",
+=======
+    "temporal_cache/tests/integration/*",
+>>>>>>> after updating
 ]
 
 [tool.coverage.report]
@@ -146,6 +152,7 @@ exclude_also = [
 ignore_errors = true
 fail_under = 50
 
+<<<<<<< before updating
 [tool.hatch.build]
 artifacts = [
     "temporalcache/*.dll",
@@ -153,6 +160,8 @@ artifacts = [
     "temporalcache/*.so",
 ]
 
+=======
+>>>>>>> after updating
 [tool.hatch.build.sources]
 src = "/"
 
@@ -170,11 +179,20 @@ packages = [
     "Cargo.lock",
 ]
 exclude = [
+    "*.dll",
+    "*.dylib",
+    "*.so",
+    "*.pyd",
     "rust/Makefile",
     "target",
 ]
 
 [tool.hatch.build.targets.wheel]
+artifacts = [
+    "temporal_cache/*.dll",
+    "temporal_cache/*.dylib",
+    "temporal_cache/*.so",
+]
 packages = [
     "temporalcache",
 ]
