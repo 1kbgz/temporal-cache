@@ -23,17 +23,17 @@ if os.name != "nt":
                     print(ret)
                     return ret
 
-            datetime.datetime = NewDateTime
+            datetime.__dict__["datetime"] = NewDateTime
 
         def teardown_method(self):
-            datetime.datetime = self._olddatetime
+            datetime.__dict__["datetime"] = self._olddatetime
 
         def test_blank(self):
             from random import random
 
             from temporalcache import expire
 
-            self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)  # noqa: DTZ001
+            self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)
             self._delay = datetime.timedelta(seconds=0)
 
             with NamedTemporaryFile() as f:

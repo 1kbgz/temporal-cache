@@ -11,20 +11,20 @@ import datetime
 class TestInterval:
     def setup_method(self):
         self._olddatetime = datetime.datetime
-        _now = datetime.datetime.now()  # noqa: DTZ005
+        _now = datetime.datetime.now()
 
         class NewDateTime(datetime.datetime):
             @classmethod
-            def now(cls):
+            def now(cls, tz=None):
                 ret = _now + self._delay
                 print(_now)
                 print(ret)
                 return ret
 
-        datetime.datetime = NewDateTime
+        datetime.__dict__["datetime"] = NewDateTime
 
     def teardown_method(self):
-        datetime.datetime = self._olddatetime
+        datetime.__dict__["datetime"] = self._olddatetime
 
     def test_blank(self):
         from random import random

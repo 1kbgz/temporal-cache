@@ -51,7 +51,7 @@ except ImportError:  # pragma: no cover
 # LRU Cache function decorator
 ################################################################################
 
-_CacheInfo = namedtuple("CacheInfo", ["hits", "misses", "maxsize", "currsize"])
+_CacheInfo = namedtuple("CacheInfo", ["hits", "misses", "maxsize", "currsize"])  # ty: ignore[mismatched-type-name]
 _KWD_MARK = (object(),)
 _FAST_TYPES = frozenset({int, str, frozenset, type(None)})
 
@@ -268,10 +268,10 @@ def persistent_lru_cache(filename, save_every=1, maxsize=128, typed=False):
                 hits = misses = 0
                 full = False
 
-        wrapper.cache_info = cache_info
-        wrapper.cache_clear = cache_clear
-        wrapper.cache_save = cache_save
-        wrapper.cache_filename = filename
+        wrapper.__dict__["cache_info"] = cache_info
+        wrapper.__dict__["cache_clear"] = cache_clear
+        wrapper.__dict__["cache_save"] = cache_save
+        wrapper.__dict__["cache_filename"] = filename
         return update_wrapper(wrapper, user_function)
 
     return decorating_function

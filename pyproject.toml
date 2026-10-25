@@ -46,12 +46,14 @@ develop = [
     "hatch-rs",
     "hatchling",
     "mdformat",
+    "mdformat-frontmatter",
     "mdformat-tables>=1",
     "pytest",
     "pytest-cov",
     "ruff",
     "twine",
     "ty",
+    "types-pytz",
     "uv",
     "wheel",
 ]
@@ -117,7 +119,7 @@ rustup target add aarch64-unknown-linux-gnu
 rustup target add x86_64-unknown-linux-gnu
 rustup show
 """
-before-build = "cargo clean --manifest-path {package}/Cargo.toml && rm -f {package}/temporal_cache/*.so"
+before-build = "cargo clean --manifest-path {package}/Cargo.toml && rm -f {package}/temporalcache/*.so"
 environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always"}
 manylinux-x86_64-image = "manylinux_2_28"
 skip = "*i686* *musllinux*"
@@ -134,7 +136,7 @@ skip = "*win32 *arm64"
 [tool.coverage.run]
 branch = true
 omit = [
-    "temporalcache/tests/integration/",
+    "temporalcache/tests/integration/*",
 ]
 
 [tool.coverage.report]
@@ -145,13 +147,6 @@ exclude_also = [
 ]
 ignore_errors = true
 fail_under = 50
-
-[tool.hatch.build]
-artifacts = [
-    "temporalcache/*.dll",
-    "temporalcache/*.dylib",
-    "temporalcache/*.so",
-]
 
 [tool.hatch.build.sources]
 src = "/"
@@ -170,11 +165,20 @@ packages = [
     "Cargo.lock",
 ]
 exclude = [
+    "*.dll",
+    "*.dylib",
+    "*.so",
+    "*.pyd",
     "rust/Makefile",
     "target",
 ]
 
 [tool.hatch.build.targets.wheel]
+artifacts = [
+    "temporalcache/*.dll",
+    "temporalcache/*.dylib",
+    "temporalcache/*.so",
+]
 packages = [
     "temporalcache",
 ]
