@@ -78,13 +78,11 @@ def expire(
     try:
         tz = tz or get_localzone()
     except AttributeError:
-        tz = time.tzname[time.daylight]
+        offset = time.altzone if time.localtime().tm_isdst > 0 else time.timezone
+        tz = datetime.timezone(datetime.timedelta(seconds=-offset))
 
     if isinstance(tz, str):
-        try:
-            tz = pytz.timezone(tz)
-        except pytz.UnknownTimeZoneError:
-            tz = datetime.tzinfo(tz)
+        tz = pytz.timezone(tz)
 
     def _wrapper(foo):
         last = datetime.datetime.now(tz=tz)

@@ -7,7 +7,10 @@
 #
 import datetime
 import time
+from importlib import import_module
+from types import SimpleNamespace
 
+import pytest
 import pytz
 
 
@@ -23,17 +26,17 @@ class TestExpire:
                 print(ret)
                 return ret
 
-        datetime.datetime = NewDateTime
+        datetime.__dict__["datetime"] = NewDateTime
 
     def teardown_method(self):
-        datetime.datetime = self._olddatetime
+        datetime.__dict__["datetime"] = self._olddatetime
 
     def test_blank(self):
         from random import random
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 0)
         self._delay = datetime.timedelta(seconds=0)
 
         @expire(1)
@@ -56,7 +59,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(seconds=0)
 
         @expire()
@@ -79,7 +82,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(seconds=0)
 
         @expire(second=0)
@@ -106,7 +109,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(minutes=0)
 
         @expire(minute=5)
@@ -133,7 +136,7 @@ class TestExpire:
 
         from temporalcache import expire_minutely
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(seconds=0)
 
         @expire_minutely(on=5)
@@ -160,7 +163,7 @@ class TestExpire:
 
         from temporalcache import expire_hourly
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(minutes=0)
 
         @expire_hourly(on=5)
@@ -187,7 +190,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(hours=0)
 
         @expire(hour=5)
@@ -214,7 +217,7 @@ class TestExpire:
 
         from temporalcache import expire_daily
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(hours=0)
 
         @expire_daily(on=5)
@@ -241,7 +244,7 @@ class TestExpire:
 
         from temporalcache import expire
 
-        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)  # noqa: DTZ001
+        self._now = datetime.datetime(2018, 1, 1, 1, 1, 1)
         self._delay = datetime.timedelta(days=0)
 
         @expire(day=5)
@@ -400,6 +403,40 @@ class TestExpire:
 
 
 class TestExpireTZ:
+    @pytest.mark.parametrize(("is_dst", "seconds"), [(0, -18000), (1, -14400)])
+    def test_local_timezone_fallback(self, monkeypatch, is_dst, seconds):
+        module = import_module("temporalcache.expire")
+
+        def unavailable():
+            raise AttributeError
+
+        class LocalDateTime(datetime.datetime):
+            @classmethod
+            def now(cls, tz=None):
+                assert tz is not None
+                assert tz.utcoffset(None) == datetime.timedelta(seconds=seconds)
+                return cls(2020, 1, 1, tzinfo=tz)
+
+        monkeypatch.setattr(module, "get_localzone", unavailable)
+        monkeypatch.setattr(time, "tzname", ("EST", "EDT"))
+        monkeypatch.setattr(time, "daylight", 1)
+        monkeypatch.setattr(time, "timezone", 18000)
+        monkeypatch.setattr(time, "altzone", 14400)
+        monkeypatch.setattr(time, "localtime", lambda: SimpleNamespace(tm_isdst=is_dst))
+        monkeypatch.setattr(datetime, "datetime", LocalDateTime)
+
+        @module.expire(day=1)
+        def cached():
+            return object()
+
+        assert cached() is cached()
+
+    def test_unknown_timezone(self):
+        from temporalcache import expire
+
+        with pytest.raises(pytz.UnknownTimeZoneError):
+            expire(tz="Not/A_Timezone")
+
     def test_tzexpire(self):
         from random import random
 
