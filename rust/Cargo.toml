@@ -15,9 +15,3 @@ crate-type = ["rlib"]
 
 [dependencies]
 foyer = "0.22.3"
-
-<<<<<<< before updating
-[profile.test.junit]
-path = "junit.xml"
-=======
->>>>>>> after updating
