@@ -8,6 +8,7 @@ publish = false
 name = "temporalcache"
 path = "rust/python/lib.rs"
 crate-type = ["cdylib"]
+test = false
 
 [dependencies]
 temporalcache = { path = "./rust", version = "*" }
