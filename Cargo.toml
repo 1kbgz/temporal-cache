@@ -8,11 +8,10 @@ publish = false
 name = "temporalcache"
 path = "rust/python/lib.rs"
 crate-type = ["cdylib"]
-test = false
 
 [dependencies]
 temporalcache = { path = "./rust", version = "*" }
-pyo3 = { version = "0.30.1", features = ["abi3", "extension-module", "multiple-pymethods"] }
+pyo3 = { version = "0.30.1", features = ["abi3", "multiple-pymethods"] }
 
 [profile.release]
 panic = 'abort'
